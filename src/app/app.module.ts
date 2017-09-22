@@ -19,7 +19,9 @@ import { AppRoutingModule } from './app.routing';
 //Layouts
 import { FullLayoutComponent } from './layouts/full-layout.component';
 import { SimpleLayoutComponent } from './layouts/simple-layout.component';
-import { UsersComponent } from './users/users.component';
+
+import { BrandsComponent } from './brands/brands.component';
+import { InfluenceComponent } from './influence/influence.component';
 
 @NgModule({
   imports: [
@@ -38,7 +40,9 @@ import { UsersComponent } from './users/users.component';
     BreadcrumbsComponent,
     SIDEBAR_TOGGLE_DIRECTIVES,
     AsideToggleDirective,
-    UsersComponent
+    InfluenceComponent,
+    BrandsComponent
+
   ],
   providers: [{
     provide: LocationStrategy,

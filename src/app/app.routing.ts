@@ -5,6 +5,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { FullLayoutComponent } from './layouts/full-layout.component';
 import { SimpleLayoutComponent } from './layouts/simple-layout.component';
 
+import { BrandsComponent } from './brands/brands.component';
+import { InfluenceComponent } from './influence/influence.component';
+
 export const routes: Routes = [
   {
     path: '',
@@ -21,6 +24,14 @@ export const routes: Routes = [
       {
         path: 'dashboard',
         loadChildren: './dashboard/dashboard.module#DashboardModule'
+      },
+      {
+        path: 'influence',
+        component: InfluenceComponent
+      },
+      {
+        path: 'brands',
+        component: BrandsComponent
       },
       {
         path: 'components',
