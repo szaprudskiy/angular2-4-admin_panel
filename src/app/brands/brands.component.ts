@@ -1,17 +1,29 @@
-import { Component, OnInit } from '@angular/core';
-import { UsersService } from './users.service';
+import { Observable } from 'rxjs/Observable';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { BrandsService } from '../shared/services/brands.service';
+import { Brands } from '../shared/models/brands.model';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-brands',
   templateUrl: './brands.component.html',
   styleUrls: ['./brands.component.scss'],
-  providers: [UsersService]
+  providers: [BrandsService]
 })
-export class BrandsComponent {
-    users = []
+export class BrandsComponent implements OnInit, OnDestroy {
+  subscription: Subscription;
 
-    constructor(private usersService: UsersService) {
-      this.users = this.usersService.users
-    }
+  constructor (private brandsService: BrandsService) {}
 
+  ngOnInit() {
+    this.subscription = Observable.combineLatest (
+      this.brandsService.getBrands(),
+    ).subscribe((data) => {
+      console.log(data);
+    });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
 }

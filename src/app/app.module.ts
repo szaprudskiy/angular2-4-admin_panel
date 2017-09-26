@@ -1,7 +1,11 @@
+// import { customHttpProvider } from './_helpers/custom-http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+
+import { HttpModule } from '@angular/http';
+import { customHttpProvider } from './_helpers/index';
 
 import { AppComponent } from './app.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
@@ -20,8 +24,12 @@ import { AppRoutingModule } from './app.routing';
 import { FullLayoutComponent } from './layouts/full-layout.component';
 import { SimpleLayoutComponent } from './layouts/simple-layout.component';
 
+
 import { BrandsComponent } from './brands/brands.component';
 import { InfluenceComponent } from './influence/influence.component';
+import { SystemComponent } from './system/system.component';
+import { LoginComponent } from './auth/login/login.component';
+import { RegistrationComponent } from './auth/registration/registration.component';
 
 @NgModule({
   imports: [
@@ -30,7 +38,8 @@ import { InfluenceComponent } from './influence/influence.component';
     AppRoutingModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
-    ChartsModule
+    ChartsModule,
+    HttpModule
   ],
   declarations: [
     AppComponent,
@@ -41,13 +50,18 @@ import { InfluenceComponent } from './influence/influence.component';
     SIDEBAR_TOGGLE_DIRECTIVES,
     AsideToggleDirective,
     InfluenceComponent,
-    BrandsComponent
+    BrandsComponent,
+    SystemComponent,
+    LoginComponent,
+    RegistrationComponent
 
   ],
   providers: [{
     provide: LocationStrategy,
     useClass: HashLocationStrategy
-  }],
+  },
+    customHttpProvider
+  ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
