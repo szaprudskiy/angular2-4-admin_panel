@@ -10,7 +10,7 @@
       "outDir": "dist",
       "assets": ["assets"],
       "index": "index.html",
-      "main": "main.ts",
+      "main": "start.ts",
       "polyfills": "polyfills.ts",
       "test": "test.ts",
       "tsconfig": "tsconfig.app.json",
