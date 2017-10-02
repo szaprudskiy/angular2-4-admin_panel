@@ -3,6 +3,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BrandsService } from '../shared/services/brands.service';
 import { Brands } from '../shared/models/brands.model';
 import { Subscription } from 'rxjs/Subscription';
+import 'rxjs/add/operator/combineLatest';
+
 
 @Component({
   selector: 'app-brands',
@@ -10,20 +12,21 @@ import { Subscription } from 'rxjs/Subscription';
   styleUrls: ['./brands.component.scss'],
   providers: [BrandsService]
 })
-export class BrandsComponent implements OnInit, OnDestroy {
-  subscription: Subscription;
+export class BrandsComponent {
+  // subscription: Subscription;
 
-  constructor (private brandsService: BrandsService) {}
+  // constructor (private brandsService: BrandsService) {}
 
-  ngOnInit() {
-    this.subscription = Observable.combineLatest (
-      this.brandsService.getBrands(),
-    ).subscribe((data) => {
-      console.log(data);
-    });
-  }
+  // ngOnInit() {
+  //   this.subscription = Observable.combineLatest (
+  //     this.brandsService.getBrands(),
+  //   ).subscribe((data) => {
+  //     console.log(data);
+  //   });
+  // }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
+  // ngOnDestroy() {
+  //   this.subscription.unsubscribe();
+  // }
+
 }

@@ -1,8 +1,7 @@
-﻿import { Injectable } from '@angular/core';
-import { ConnectionBackend, XHRBackend, RequestOptions, Request, RequestOptionsArgs, Response, Http, Headers } from '@angular/http';
-// import { appConfig } from '../app.config';
+﻿import { Injectable } from "@angular/core";
+import { ConnectionBackend, XHRBackend, RequestOptions, Request, RequestOptionsArgs, Response, Http, Headers } from "@angular/http";
 
-import { Observable } from 'rxjs/Observable';
+import { Observable } from "rxjs/Observable";
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/throw';
@@ -40,7 +39,7 @@ export class CustomHttp extends Http {
         const currentUser = JSON.parse(localStorage.getItem('adminUser'));
 
         if (currentUser && currentUser.token) {
-            options.headers.append('Authorization', 'Bearer ' + currentUser.token);
+            options.headers.append('Authorization', 'Admin ' + currentUser.token);
         }
 
         return options;

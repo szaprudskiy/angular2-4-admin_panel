@@ -5,7 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 import { HttpModule } from '@angular/http';
-import { customHttpProvider } from './_helpers/index';
+// import { customHttpProvider } from './_helpers/index';
 
 import { AppComponent } from './app.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
@@ -16,7 +16,6 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { SIDEBAR_TOGGLE_DIRECTIVES } from './shared/sidebar.directive';
 import { AsideToggleDirective } from './shared/aside.directive';
 import { BreadcrumbsComponent } from './shared/breadcrumb.component';
-
 // Routing Module
 import { AppRoutingModule } from './app.routing';
 
@@ -28,19 +27,10 @@ import { SimpleLayoutComponent } from './layouts/simple-layout.component';
 import { BrandsComponent } from './brands/brands.component';
 import { InfluenceComponent } from './influence/influence.component';
 import { SystemComponent } from './system/system.component';
-import { LoginComponent } from './auth/login/login.component';
-import { RegistrationComponent } from './auth/registration/registration.component';
+
+
 
 @NgModule({
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    BsDropdownModule.forRoot(),
-    TabsModule.forRoot(),
-    ChartsModule,
-    HttpModule
-  ],
   declarations: [
     AppComponent,
     FullLayoutComponent,
@@ -52,15 +42,22 @@ import { RegistrationComponent } from './auth/registration/registration.componen
     InfluenceComponent,
     BrandsComponent,
     SystemComponent,
-    LoginComponent,
-    RegistrationComponent
-
   ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    BsDropdownModule.forRoot(),
+    TabsModule.forRoot(),
+    ChartsModule,
+    HttpModule,
+  ],
+
   providers: [{
     provide: LocationStrategy,
     useClass: HashLocationStrategy
   },
-    customHttpProvider
+    // customHttpProvider
   ],
   bootstrap: [ AppComponent ]
 })
