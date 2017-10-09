@@ -1,25 +1,31 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, CanActivate } from '@angular/router';
 
-//Layouts
+
+// Layouts
 import { FullLayoutComponent } from './layouts/full-layout.component';
 import { SimpleLayoutComponent } from './layouts/simple-layout.component';
 
 import { BrandsComponent } from './brands/brands.component';
 import { InfluenceComponent } from './influence/influence.component';
+import {LoginComponent} from './pages/login.component';
+import {BrandUsersService, isAuthentication, notAuthentication} from './shared/services/BrandUsers.service';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'pages/login',
     pathMatch: 'full',
   },
+  // {
+  //   canActivate: [notAuthentication],
+  //   path: 'pages/login',
+  //   component: LoginComponent
+  // },
   {
     path: '',
-    component: FullLayoutComponent,
-    data: {
-      title: 'Home'
-    },
+    // component: LoginComponent,
+    canActivate: [isAuthentication],
     children: [
       {
         path: 'dashboard',
@@ -80,6 +86,7 @@ export const routes: Routes = [
 
 @NgModule({
   imports: [ RouterModule.forRoot(routes) ],
-  exports: [ RouterModule ]
+  exports: [ RouterModule ],
+  providers: [ isAuthentication, BrandUsersService ]
 })
 export class AppRoutingModule {}

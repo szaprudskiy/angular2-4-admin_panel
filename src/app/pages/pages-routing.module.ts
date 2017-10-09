@@ -9,6 +9,7 @@ import { RegisterComponent } from './register.component';
 const routes: Routes = [
   {
     path: '',
+    component: LoginComponent,
     data: {
       title: 'Example Pages'
     },
@@ -27,13 +28,13 @@ const routes: Routes = [
           title: 'Page 500'
         }
       },
-      {
-        path: 'login',
-        component: LoginComponent,
-        data: {
-          title: 'Login Page'
-        }
-      },
+      // {
+      //   path: 'login',
+      //   component: LoginComponent,
+      //   data: {
+      //     title: 'Login Page'
+      //   }
+      // },
       {
         path: 'register',
         component: RegisterComponent,

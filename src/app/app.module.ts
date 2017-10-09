@@ -19,7 +19,7 @@ import { BreadcrumbsComponent } from './shared/breadcrumb.component';
 // Routing Module
 import { AppRoutingModule } from './app.routing';
 
-//Layouts
+// Layouts
 import { FullLayoutComponent } from './layouts/full-layout.component';
 import { SimpleLayoutComponent } from './layouts/simple-layout.component';
 
@@ -27,6 +27,7 @@ import { SimpleLayoutComponent } from './layouts/simple-layout.component';
 import { BrandsComponent } from './brands/brands.component';
 import { InfluenceComponent } from './influence/influence.component';
 import { SystemComponent } from './system/system.component';
+import {PagesModule} from './pages/pages.module';
 
 
 
@@ -51,12 +52,14 @@ import { SystemComponent } from './system/system.component';
     TabsModule.forRoot(),
     ChartsModule,
     HttpModule,
+    PagesModule
   ],
 
-  providers: [{
-    provide: LocationStrategy,
-    useClass: HashLocationStrategy
-  },
+  providers: [
+  //   {
+  //   provide: LocationStrategy,
+  //   useClass: HashLocationStrategy
+  // },
     // customHttpProvider
   ],
   bootstrap: [ AppComponent ]

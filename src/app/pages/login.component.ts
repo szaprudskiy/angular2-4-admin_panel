@@ -1,21 +1,27 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { Injectable } from '@angular/core';
-import { ConnectionBackend, XHRBackend, RequestOptions, Request, RequestOptionsArgs, Response, Http, Headers } from "@angular/http";
+import { ConnectionBackend, XHRBackend, RequestOptions, Request, RequestOptionsArgs, Response, Http, Headers } from '@angular/http';
 
 
 import 'rxjs/add/operator/toPromise';
+import {Router} from '@angular/router';
 
 @Component({
   templateUrl: 'login.component.html',
   exportAs: 'ngModel'
 })
-export class LoginComponent {
-  username='';
-  password='';
-  constructor(private http: Http ) {}
+export class LoginComponent implements OnInit{
+
+  username= '';
+  password= '';
+  constructor(private http: Http, router: Router ) {}
+
+  ngOnInit(){
+     // this.router.navigate(['/dashboard']);
+  }
 
   ChangeValue(field, val){
-    if(field == 'username'){
+    if (field === 'username'){
       this.username = val;
     } else {
       this.password = val;
@@ -24,11 +30,17 @@ export class LoginComponent {
 
   login() {
     return this.http
-    .post('http://37.59.126.66:3000/api/admin/login', 
+    .post('http://37.59.126.66:3000/api/admin/login',
     JSON.stringify({ username: this.username, password: this.password }), this.defaultRequestOptions())
     .toPromise()
     .then(res => {
       console.log('res: ', res);
+      const User = res.json().data;
+          if (User && User.token) {
+            localStorage.setItem('adminUser', JSON.stringify(User));
+             location.href = '/dashboard';
+          }
+          return User;
     })
     .catch(err => {
       console.log('err: ', err);
