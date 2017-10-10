@@ -2,7 +2,8 @@ import { Observable } from 'rxjs/Observable';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/combineLatest';
-// import { BrandUsersService } from '../shared/services/BrandUsers.service';
+import {Http} from '@angular/http';
+import { BrandUsersService } from '../shared/services/BrandUsers.service';
 
 
 
@@ -12,7 +13,8 @@ import 'rxjs/add/operator/combineLatest';
   styleUrls: ['./brands.component.scss'],
 })
 export class BrandsComponent {
-    constructor() {}
+
+    constructor(private branduserservice: BrandUsersService) {}
 
 
 }

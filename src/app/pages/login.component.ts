@@ -46,6 +46,13 @@ export class LoginComponent implements OnInit{
       console.log('err: ', err);
     })
 
+
+    // logout() {
+    //   return this.http
+    //     .delete('http://37.59.126.66:3000/api/admin/login')
+    //     localStorage.removeItem('adminUser')
+    // }
+
     // return this.http.post('/api/admin/login', { username: this.username, password: this.password })
     //   .map((response: Response) => {
     //     console.log('test: ', response);
@@ -56,7 +63,7 @@ export class LoginComponent implements OnInit{
     //     }
     //     return User;
     //   });
-  }
+
 
   defaultRequestOptions() {
     const token = localStorage.getItem('AdminUser');

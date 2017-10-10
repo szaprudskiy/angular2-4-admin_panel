@@ -1,3 +1,4 @@
+///<reference path="../models/BrandUser.model.ts"/>
 import {Injectable} from '@angular/core';
 // import {Observable} from 'rxjs/Observable';
 import { BrandUser } from '../models/BrandUser.model';
@@ -10,29 +11,27 @@ import { Http, Headers, Response } from '@angular/http';
 export class BrandUsersService {
   constructor(private http: Http){}
 
-  getBrandUserbyEmail(email: string): Observable<BrandUser> {
-     return this.http.get('http://37.59.126.66:3000/doc/api-doc.json')
-       .map((response: Response) => response.json());
+    BrandSignUp(company: string, email: string, name: string, password: string, phone: number){
+      this.http.post('http://37.59.126.66:3000/doc/api-doc.json/brand/signup', {company, email, name, password, phone})
+        .map((response: Response) => response.json());
 
+    }
+
+    getBrandList() {
+      this.http.get('http://37.59.126.66:3000/doc/api-doc.json/brand/list')
+        .map(res => res.json());
+    }
+
+  editBrandInfo(company: string, email: string, name: string, password: string, phone: number) {
+      this.http.put('http://37.59.126.66:3000/doc/api-doc.json/brand/{brandId}', {company, email, name, password, phone})
+        .map((response: Response) => response.json());
   }
 
-  getBrandUserbyPhone(phone: string): Observable<BrandUser> {
-    return this.http.get('http://37.59.126.66:3000/doc/api-doc.json')
+  confirmBrand(confirm: boolean) {
+    this.http.put('http://37.59.126.66:3000/doc/api-doc.json/brand/confirmed{brandId}', {confirm})
       .map((response: Response) => response.json());
-
   }
 
-  getBrandUserbyName(name: string): Observable<BrandUser> {
-    return this.http.get('http://37.59.126.66:3000/doc/api-doc.json')
-      .map((response: Response) => response.json());
-
-  }
-
-  getBrandUserbyCathegory(cathegory: string): Observable<BrandUser> {
-    return this.http.get('http://37.59.126.66:3000/doc/api-doc.json')
-      .map((response: Response) => response.json());
-
-  }
 
   checkLogin(){
     const aUser = JSON.parse(localStorage.getItem('adminUser'));

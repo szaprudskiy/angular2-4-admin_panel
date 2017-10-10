@@ -1,6 +1,6 @@
-export class BrandUser {
+export class InfluencerUser {
   constructor(
-    public phone: number,
+    public phone: string,
     public name: string,
     public email: string,
     public cathegory: string,
