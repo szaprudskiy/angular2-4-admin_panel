@@ -1,6 +1,6 @@
 ﻿import { Injectable } from '@angular/core';
 import { ConnectionBackend, XHRBackend, RequestOptions, Request, RequestOptionsArgs, Response, Http, Headers } from '@angular/http'
-
+import { appConfig } from '../app.config';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
@@ -13,41 +13,33 @@ export class CustomHttp extends Http {
     }
 
     get(url: string, options?: RequestOptionsArgs): Observable<Response> {
-        return super.get('http://37.59.126.66:3000' + url, this.addJwt(options)).catch(this.handleError);
+        return super.get(appConfig.apiUrl + url, this.addJwt(options)).catch(this.handleError);
     }
 
     post(url: string, body: string, options?: RequestOptionsArgs): Observable<Response> {
-        return super.post('http://37.59.126.66:3000' + url, body, this.addJwt(options)).catch(this.handleError);
+        return super.post(appConfig.apiUrl + url, body, this.addJwt(options)).catch(this.handleError);
     }
 
     put(url: string, body: string, options?: RequestOptionsArgs): Observable<Response> {
-        return super.put('http://37.59.126.66:3000' + url, body, this.addJwt(options)).catch(this.handleError);
+        return super.put(appConfig.apiUrl + url, body, this.addJwt(options)).catch(this.handleError);
     }
 
     delete(url: string, options?: RequestOptionsArgs): Observable<Response> {
-        return super.delete('http://37.59.126.66:3000' + url, this.addJwt(options)).catch(this.handleError);
+        return super.delete(appConfig.apiUrl + url, this.addJwt(options)).catch(this.handleError);
     }
 
-    // private helper methods
-
     private addJwt(options?: RequestOptionsArgs): RequestOptionsArgs {
-        // ensure request options and headers are not null
         options = options || new RequestOptions();
         options.headers = options.headers || new Headers();
-
-        // add authorization header with jwt token
         const currentUser = JSON.parse(localStorage.getItem('adminUser'));
-
         if (currentUser && currentUser.token) {
             options.headers.append('Authorization', 'Admin ' + currentUser.token);
         }
-
         return options;
     }
 
     private handleError(error: any) {
         if (error.status === 401) {
-            // 401 unauthorized response so log user out of client
             window.location.href = '/login';
         }
 

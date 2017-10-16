@@ -1,87 +1,35 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule, CanActivate } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
+import { NotAuthentication } from './shared/services/admin.service'
+import { AuthorizedModule, authorizedRoutes } from './authorized/authorized.module';
 
-
-// Layouts
-import {FullLayoutComponent, isAuthentication } from './layouts/full-layout.component';
-import { SimpleLayoutComponent } from './layouts/simple-layout.component';
-
-import { BrandsComponent } from './brands/brands.component';
-import { InfluenceComponent } from './influence/influence.component';
-import {LoginComponent} from './pages/login.component';
-import {BrandUsersService } from './shared/services/BrandUsers.service';
+import { LoginComponent } from './login/login.component';
+import { PageNotFoundComponent } from './errors/page-not-found/page-not-found.component';
+import { PageForbiddenComponent } from './errors/page-forbidden/page-forbidden.component';
 
 
 export const routes: Routes = [
   {
-    path: '',
-    redirectTo: 'pages/login',
-    pathMatch: 'full',
+    path: 'login',
+    component: LoginComponent,
+    canActivate: [NotAuthentication]
   },
   {
-    path: 'innerdashboard',
-    component: FullLayoutComponent,
-    // canActivate: [isAuthentication],
-    children: [
-      {
-        path: 'dashboard',
-        loadChildren: './dashboard/dashboard.module#DashboardModule'
-      },
-      {
-        path: 'influence',
-        component: InfluenceComponent
-      },
-      {
-        path: 'brands',
-        component: BrandsComponent
-      },
-      {
-        path: 'components',
-        loadChildren: './components/components.module#ComponentsModule'
-      },
-      {
-        path: 'icons',
-        loadChildren: './icons/icons.module#IconsModule'
-      },
-      {
-        path: 'forms',
-        loadChildren: './forms/forms.module#FormsModule'
-      },
-      {
-        path: 'plugins',
-        loadChildren: './plugins/plugins.module#PluginsModule'
-      },
-      {
-        path: 'widgets',
-        loadChildren: './widgets/widgets.module#WidgetsModule'
-      },
-      {
-        path: 'charts',
-        loadChildren: './chartjs/chartjs.module#ChartJSModule'
-      },
-      {
-        path: 'uikits',
-        loadChildren: './uikits/uikits.module#UIKitsModule'
-      }
-    ]
+    path: '404',
+    component: PageNotFoundComponent
   },
   {
-    path: 'pages',
-    component: SimpleLayoutComponent,
-    data: {
-      title: 'Pages'
-    },
-    children: [
-      {
-        path: '',
-        loadChildren: './pages/pages.module#PagesModule',
-      }
-    ]
-  }
+    path: '500',
+    component: PageForbiddenComponent
+  },
+  ...authorizedRoutes
 ];
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes) ],
+  imports: [
+    RouterModule.forRoot(routes),
+    AuthorizedModule
+  ],
   exports: [ RouterModule ],
   providers: [ ]
 })
