@@ -3,13 +3,14 @@ import { Routes, RouterModule, CanActivate } from '@angular/router';
 
 
 // Layouts
-import { FullLayoutComponent } from './layouts/full-layout.component';
+import {FullLayoutComponent, isAuthentication } from './layouts/full-layout.component';
 import { SimpleLayoutComponent } from './layouts/simple-layout.component';
 
 import { BrandsComponent } from './brands/brands.component';
 import { InfluenceComponent } from './influence/influence.component';
 import {LoginComponent} from './pages/login.component';
-import {BrandUsersService, isAuthentication, notAuthentication} from './shared/services/BrandUsers.service';
+import {BrandUsersService } from './shared/services/BrandUsers.service';
+
 
 export const routes: Routes = [
   {
@@ -17,15 +18,10 @@ export const routes: Routes = [
     redirectTo: 'pages/login',
     pathMatch: 'full',
   },
-  // {
-  //   canActivate: [notAuthentication],
-  //   path: 'pages/login',
-  //   component: LoginComponent
-  // },
   {
-    path: '',
-    // component: LoginComponent,
-    canActivate: [isAuthentication],
+    path: 'innerdashboard',
+    component: FullLayoutComponent,
+    // canActivate: [isAuthentication],
     children: [
       {
         path: 'dashboard',
@@ -87,6 +83,6 @@ export const routes: Routes = [
 @NgModule({
   imports: [ RouterModule.forRoot(routes) ],
   exports: [ RouterModule ],
-  providers: [ isAuthentication, BrandUsersService ]
+  providers: [ ]
 })
 export class AppRoutingModule {}

@@ -6,19 +6,16 @@ import { ConnectionBackend, XHRBackend, RequestOptions, Request, RequestOptionsA
 import 'rxjs/add/operator/toPromise';
 import {Router} from '@angular/router';
 
+
 @Component({
   templateUrl: 'login.component.html',
   exportAs: 'ngModel'
 })
-export class LoginComponent implements OnInit{
+export class LoginComponent {
 
   username= '';
   password= '';
-  constructor(private http: Http, router: Router ) {}
-
-  ngOnInit(){
-     // this.router.navigate(['/dashboard']);
-  }
+  constructor(private http: Http, private router: Router) {}
 
   ChangeValue(field, val){
     if (field === 'username'){
@@ -30,28 +27,25 @@ export class LoginComponent implements OnInit{
 
   login() {
     return this.http
-    .post('http://37.59.126.66:3000/api/admin/login',
-    JSON.stringify({ username: this.username, password: this.password }), this.defaultRequestOptions())
-    .toPromise()
-    .then(res => {
-      console.log('res: ', res);
-      const User = res.json().data;
-          if (User && User.token) {
-            localStorage.setItem('adminUser', JSON.stringify(User));
-             location.href = '/dashboard';
-          }
-          return User;
-    })
-    .catch(err => {
-      console.log('err: ', err);
-    })
+      .post('http://37.59.126.66:3000/api/admin/login',
+        JSON.stringify({username: this.username, password: this.password}), this.defaultRequestOptions())
+      .toPromise()
+      .then(res => {
+        console.log('res: ', res);
+        const User = res.json().data;
+        if (User && User.token) {
+          localStorage.setItem('adminUser', JSON.stringify(User));
+          this.router.navigate(['innerdashboard'])
+        }
+        return User;
+      })
+      .catch(err => {
+        console.log('err: ', err);
+      })
+  }
 
 
-    // logout() {
-    //   return this.http
-    //     .delete('http://37.59.126.66:3000/api/admin/login')
-    //     localStorage.removeItem('adminUser')
-    // }
+
 
     // return this.http.post('/api/admin/login', { username: this.username, password: this.password })
     //   .map((response: Response) => {

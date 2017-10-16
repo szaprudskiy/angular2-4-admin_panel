@@ -1,11 +1,9 @@
 ///<reference path="../models/BrandUser.model.ts"/>
 import {Injectable} from '@angular/core';
-// import {Observable} from 'rxjs/Observable';
 import { BrandUser } from '../models/BrandUser.model';
 import 'rxjs/add/operator/map';
-import { Resolve, Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { Observable } from 'rxjs';
 import { Http, Headers, Response } from '@angular/http';
+
 
 @Injectable()
 export class BrandUsersService {
@@ -14,7 +12,6 @@ export class BrandUsersService {
     BrandSignUp(company: string, email: string, name: string, password: string, phone: number){
       this.http.post('http://37.59.126.66:3000/doc/api-doc.json/brand/signup', {company, email, name, password, phone})
         .map((response: Response) => response.json());
-
     }
 
     getBrandList() {
@@ -33,44 +30,23 @@ export class BrandUsersService {
   }
 
 
-  checkLogin(){
-    const aUser = JSON.parse(localStorage.getItem('adminUser'));
-    if(aUser && aUser['_id']){
-      return (aUser && aUser['_id']) ? aUser : aUser;
-    } else {
-      return false;
-    }
-  }
+
 }
 
 
 
-@Injectable()
-export class isAuthentication implements CanActivate {
 
-  constructor(private service: BrandUsersService, private router: Router){}
-
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot){
-    const user = this.service.checkLogin();
-    if(!user || !user._id){
-      return Observable.of(true);
-    } else {
-      return Observable.of(false);
-    }
-  }
-}
-
-@Injectable()
-export class notAuthentication implements CanActivate {
-
-  constructor(private service: BrandUsersService, private router: Router){}
-
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot){
-    const user = this.service.checkLogin();
-    if(user && user._id){
-      return Observable.of(true);
-    } else {
-      return Observable.of(false);
-    }
-  }
-}
+// @Injectable()
+// export class notAuthentication implements CanActivate {
+//
+//   constructor(private service: BrandUsersService, private router: Router){}
+//
+//   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot){
+//     const user = this.service.checkLogin();
+//     if(user && user._id){
+//       return Observable.of(true);
+//     } else {
+//       return Observable.of(false);
+//     }
+//   }
+// }

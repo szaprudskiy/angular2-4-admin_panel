@@ -20,7 +20,7 @@ import { BreadcrumbsComponent } from './shared/breadcrumb.component';
 import { AppRoutingModule } from './app.routing';
 
 // Layouts
-import { FullLayoutComponent } from './layouts/full-layout.component';
+import {FullLayoutComponent, isAuthentication} from './layouts/full-layout.component';
 import { SimpleLayoutComponent } from './layouts/simple-layout.component';
 
 
@@ -28,6 +28,7 @@ import { BrandsComponent } from './brands/brands.component';
 import { InfluenceComponent } from './influence/influence.component';
 import { SystemComponent } from './system/system.component';
 import {PagesModule} from './pages/pages.module';
+import {BrandUsersService} from './shared/services/BrandUsers.service';
 
 
 
@@ -56,9 +57,10 @@ import {PagesModule} from './pages/pages.module';
   ],
 
   providers: [
+    BrandUsersService
   //   {
   //   provide: LocationStrategy,
-  //   useClass: HashLocationStrategy
+  //    useClass: HashLocationStrategy
   // },
     // customHttpProvider
   ],
