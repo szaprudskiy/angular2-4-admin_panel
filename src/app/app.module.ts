@@ -1,68 +1,46 @@
-// import { customHttpProvider } from './_helpers/custom-http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
-
 import { HttpModule } from '@angular/http';
-// import { customHttpProvider } from './_helpers/index';
-
-import { AppComponent } from './app.component';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { TabsModule } from 'ngx-bootstrap/tabs';
-import { NAV_DROPDOWN_DIRECTIVES } from './shared/nav-dropdown.directive';
-
-import { ChartsModule } from 'ng2-charts/ng2-charts';
-import { SIDEBAR_TOGGLE_DIRECTIVES } from './shared/sidebar.directive';
-import { AsideToggleDirective } from './shared/aside.directive';
-import { BreadcrumbsComponent } from './shared/breadcrumb.component';
-// Routing Module
+import { SimpleNotificationsModule } from 'angular2-notifications';
 import { AppRoutingModule } from './app.routing';
 
-// Layouts
-import {FullLayoutComponent, isAuthentication} from './layouts/full-layout.component';
-import { SimpleLayoutComponent } from './layouts/simple-layout.component';
+// providers
+import { customHttpProvider } from './_helpers/index';
 
+// Services
+import { AdminService, IsAuthentication, NotAuthentication } from './shared/services/admin.service';
+import { BrandService } from './shared/services/brand.service';
+import { InfluencerService } from './shared/services/influencer.service';
 
-import { BrandsComponent } from './brands/brands.component';
-import { InfluenceComponent } from './influence/influence.component';
-import { SystemComponent } from './system/system.component';
-import {PagesModule} from './pages/pages.module';
-import {BrandUsersService} from './shared/services/BrandUsers.service';
-
-
+// components
+import { AppComponent } from './app.component';
+import { LoginComponent } from './login/login.component';
+import { PageNotFoundComponent } from './errors/page-not-found/page-not-found.component';
+import { PageForbiddenComponent } from './errors/page-forbidden/page-forbidden.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FullLayoutComponent,
-    SimpleLayoutComponent,
-    NAV_DROPDOWN_DIRECTIVES,
-    BreadcrumbsComponent,
-    SIDEBAR_TOGGLE_DIRECTIVES,
-    AsideToggleDirective,
-    InfluenceComponent,
-    BrandsComponent,
-    SystemComponent,
+    LoginComponent,
+    PageNotFoundComponent,
+    PageForbiddenComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    BsDropdownModule.forRoot(),
-    TabsModule.forRoot(),
-    ChartsModule,
     HttpModule,
-    PagesModule
+    SimpleNotificationsModule.forRoot()
   ],
 
   providers: [
-    BrandUsersService
-  //   {
-  //   provide: LocationStrategy,
-  //    useClass: HashLocationStrategy
-  // },
-    // customHttpProvider
+    customHttpProvider,
+    AdminService,
+    IsAuthentication,
+    NotAuthentication,
+    BrandService,
+    InfluencerService,
   ],
   bootstrap: [ AppComponent ]
 })
