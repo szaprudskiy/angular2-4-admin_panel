@@ -22,7 +22,7 @@ export class AdminService {
         if(data.success){
           this.User = data.data;
           localStorage.setItem('adminUser', JSON.stringify(this.User));
-          this.router.navigate(['dashboard']);
+          this.router.navigate(['']);
         } else {
           let message = data.error;
           this._service.error(
