@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Http} from '@angular/http';
 import { NotificationsService } from 'angular2-notifications';
 
+
 @Injectable()
 export class AdminService {
   User;
@@ -22,7 +23,7 @@ export class AdminService {
         if(data.success){
           this.User = data.data;
           localStorage.setItem('adminUser', JSON.stringify(this.User));
-          this.router.navigate(['dashboard']);
+          this.router.navigate(['']);
         } else {
           let message = data.error;
           this._service.error(
@@ -66,14 +67,21 @@ export class AdminService {
       return false;
     }
   }
+
+  logout() {
+    this.http.delete('admin/login')
+    localStorage.removeItem('adminUser')
+    this.router.navigate(['/login'])
+  }
+
 }
 
 @Injectable()
 export class IsAuthentication implements CanActivate {
 
   constructor(
-    private service:AdminService,
-    private router:Router
+    private service: AdminService,
+    private router: Router
   ){}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot){
@@ -91,8 +99,8 @@ export class IsAuthentication implements CanActivate {
 export class NotAuthentication implements CanActivate {
 
   constructor(
-    private service:AdminService,
-    private router:Router
+    private service: AdminService,
+    private router: Router
   ){}
 
   canActivate(

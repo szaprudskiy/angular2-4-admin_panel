@@ -1,3 +1,39 @@
-<p>
-  brand-edit works!
-</p>
+<form>
+  <div>
+    Name
+    <input
+      class="form-control"
+      type="text"
+      name="name"
+      [(ngModel)]="brand.name"
+    >
+  </div>
+  <div>
+    Company
+    <input
+      class="form-control"
+      type="text"
+      name="company"
+      [(ngModel)]="brand.company"
+    >
+  </div>
+  <div>
+    Phone
+    <input
+      class="form-control"
+      type="text"
+      name="phone"
+      [(ngModel)]="brand.phone"
+    >
+  </div>
+  <div>
+    Email
+    <input
+      class="form-control"
+      type="email"
+      name="email"
+      [(ngModel)]="brand.email"
+    >
+  </div>
+  <button class="btn btn-success" name="submit" type="submit" (click)="update()">OK</button>
+</form>

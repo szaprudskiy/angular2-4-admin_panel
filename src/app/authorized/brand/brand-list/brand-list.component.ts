@@ -8,6 +8,7 @@ import { BrandService } from '../../../shared/services/brand.service';
 })
 export class BrandListComponent implements OnInit {
   users;
+
   constructor(
     private service: BrandService
   ) { }

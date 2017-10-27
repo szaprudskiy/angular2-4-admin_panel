@@ -1,3 +1,39 @@
-<p>
-  influencer-edit works!
-</p>
+<form>
+  <div>
+    Name
+    <input
+      class="form-control"
+      type="text"
+      name="name"
+      [(ngModel)]="influence.name"
+    >
+  </div>
+  <div>
+    Category
+    <input
+      class="form-control"
+      type="text"
+      name="category"
+      [(ngModel)]="influence.category"
+    >
+  </div>
+  <div>
+    Phone
+    <input
+      class="form-control"
+      type="text"
+      name="phone"
+      [(ngModel)]="influence.phone"
+    >
+  </div>
+  <div>
+    Email
+    <input
+      class="form-control"
+      type="email"
+      name="email"
+      [(ngModel)]="influence.email"
+    >
+  </div>
+  <button class="btn btn-success" name="submit" type="submit" (click)="update()">OK</button>
+</form>

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
-import { Route, RouterModule } from "@angular/router";
+import { Route, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IsAuthentication } from '../shared/services/admin.service'
 
 // directives

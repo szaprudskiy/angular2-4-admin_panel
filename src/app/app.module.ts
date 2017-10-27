@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { AppRoutingModule } from './app.routing';
 
+
 // providers
 import { customHttpProvider } from './_helpers/index';
 
