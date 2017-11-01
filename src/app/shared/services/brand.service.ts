@@ -13,7 +13,7 @@ export class BrandService {
     private _service: NotificationsService
   ) { }
 
-  getBrands(count=10, offset=0){
+  getBrands(count=20, offset=0){
     let url = 'brand/list?count=' + count + '&offset=' + offset;
     return new Promise((res, rej) =>{
       this.http.get(url)
@@ -101,13 +101,12 @@ export class BrandService {
   }
 
 
-  // brandConfirmed(id) {
-  //   return this.http.put('brand/' + id)
-  //   if ( confirmed == 0 ){
+  // brandConfirmed(id, confirm) {
+  //   return this.http.put('brand/confirmed/' + id);
+  //   if ( confirm == 0 ){
   //     return 1
   //   }else{
   //     return 0;
   //   }
-  //
   // }
 }

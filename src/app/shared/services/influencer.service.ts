@@ -12,7 +12,7 @@ export class InfluencerService {
     private _service: NotificationsService
   ) { }
 
-  getInfluencers(count=10, offset=0){
+  getInfluencers(count=20, offset=0){
     let url = 'influencer/list?count=' + count + '&offset=' + offset;
     return new Promise((res, rej) =>{
       this.http.get(url)
@@ -98,5 +98,6 @@ export class InfluencerService {
         })
     })
   }
+
 
 }

@@ -3,6 +3,7 @@ import { BrandService } from '../../../shared/services/brand.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 
+
 @Component({
   selector: 'app-brand-edit',
   templateUrl: './brand-edit.component.html',
@@ -14,7 +15,7 @@ export class BrandEditComponent implements OnInit {
     name: '',
     company: '',
     phone: '',
-    email: ''
+    email: '',
   };
   brandId;
 
@@ -22,7 +23,6 @@ export class BrandEditComponent implements OnInit {
     private brandService: BrandService,
     private route: ActivatedRoute,
     private router: Router
-
   ) { }
 
   ngOnInit() {
@@ -43,9 +43,12 @@ export class BrandEditComponent implements OnInit {
     })
   }
 
+
   update(){
     let self = this;
       this.brandService.update(self.brandId, this.brand)
    }
+
+
 
 }

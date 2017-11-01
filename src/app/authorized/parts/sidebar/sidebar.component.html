@@ -5,15 +5,15 @@
         Dashboard
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLinkActive="active" [routerLink]="['/']"><i class="icon-speedometer"></i> Dashboard</a>
+        <a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/']"><i class="icon-speedometer"></i> Dashboard</a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" routerLink="/influencers">Influencers</a>
+        <a class="nav-link" routerLinkActive="active" routerLink="/influencers">Influencers</a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" routerLink="/brands">Brands</a>
+        <a class="nav-link" routerLinkActive="active" routerLink="/brands">Brands</a>
       </li>
 
       <li class="divider"></li>

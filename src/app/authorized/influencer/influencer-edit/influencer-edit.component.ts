@@ -9,13 +9,13 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class InfluencerEditComponent implements OnInit {
 
-  influence:{} = {
+  influencer:{} = {
     name: '',
     category: '',
     phone: '',
     email: ''
   };
-  influenceId;
+  influencerId;
 
   constructor(
     private influenceService: InfluencerService,
@@ -26,11 +26,11 @@ export class InfluencerEditComponent implements OnInit {
   ngOnInit() {
     let self = this;
     this.route.params.subscribe(params => {
-      self.influenceId = params['influencerId'];
-      if(self.influenceId) {
-        this.influenceService.getInfluencer(self.influenceId)
+      self.influencerId = params['influencerId'];
+      if(self.influencerId) {
+        this.influenceService.getInfluencer(self.influencerId)
           .then(data => {
-            self.influence = data;
+            self.influencer = data;
           })
           .catch(error => {
             this.router.navigate(['500'])
@@ -43,7 +43,7 @@ export class InfluencerEditComponent implements OnInit {
 
   update(){
     let self = this;
-    this.influenceService.update(self.influenceId, this.influence)
+    this.influenceService.update(self.influencerId, this.influencer)
   }
 
 }

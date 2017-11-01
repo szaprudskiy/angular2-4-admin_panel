@@ -13,6 +13,7 @@
           <th>Email</th>
           <th>Status</th>
           <th>Edit</th>
+          <th>Delete</th>
         </tr>
         </thead>
         <tbody>
@@ -26,19 +27,24 @@
           </td>
           <td>
             <a routerLink="/brands/edit/{{user.id}}">
-              <i class="fa fa-pencil-square" aria-hidden="true"></i>
+              <i class="fa fa-pencil-square fa-lg" aria-hidden="true"></i>
+            </a>
+          </td>
+          <td>
+            <a routerLink="">
+              <i class="fa fa-trash-o fa-lg" aria-hidden="true" (click)="deleteUser()"></i>
             </a>
           </td>
         </tr>
         </tbody>
       </table>
       <ul class="pagination">
-        <li class="page-item"><a class="page-link" href="#">Prev</a></li>
-        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"><a class="page-link" href="#">4</a></li>
-        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        <li class="page-item" routerLinkActive="active"><a class="page-link" (click)="prevPage()">Prev</a></li>
+        <li class="page-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a class="page-link" routerLink="/brands/1">1</a></li>
+        <li class="page-item" routerLinkActive="active"><a class="page-link" routerLink="/brands/2">2</a></li>
+        <li class="page-item" routerLinkActive="active"><a class="page-link" routerLink="/brands/3">3</a></li>
+        <li class="page-item" routerLinkActive="active"><a class="page-link" routerLink="/brands/4">4</a></li>
+        <li class="page-item" routerLinkActive="active"><a class="page-link" (click)="nextPage()">Next</a></li>
       </ul>
     </div>
   </div>

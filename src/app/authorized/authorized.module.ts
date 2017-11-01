@@ -20,7 +20,6 @@ import { UiModule } from '../ui/ui.module';
 // components
 import { BreadcrumbsComponent } from '../shared/breadcrumb.component';
 import { AuthorizedComponent } from './authorized/authorized.component';
-import { BrandListComponent } from './brand/brand-list/brand-list.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SidebarComponent } from './parts/sidebar/sidebar.component';
 import { HeaderComponent } from './parts/header/header.component';
@@ -32,8 +31,8 @@ import { BrandEditComponent } from './brand/brand-edit/brand-edit.component';
 import { InfluencerInfoComponent } from './influencer/influencer-info/influencer-info.component';
 import { InfluencerEditComponent } from './influencer/influencer-edit/influencer-edit.component';
 import { BrandComponent } from './brand/brand/brand.component';
-import { InfluencerComponent } from './influencer/influencer/influencer.component'
-
+import { InfluencerComponent } from './influencer/influencer/influencer.component';
+import { BrandListComponent } from './brand/brand-list/brand-list.component';
 
 export const authorizedRoutes: Route[] = [
   {
@@ -50,16 +49,20 @@ export const authorizedRoutes: Route[] = [
         component: BrandComponent,
         children: [
           {
-            path: '',
-            component: BrandListComponent
-          },
-          {
             path: 'info/:brandId',
             component: BrandInfoComponent
           },
           {
             path: 'edit/:brandId',
             component: BrandEditComponent
+          },
+          {
+            path: '',
+            component: BrandListComponent
+          },
+          {
+            path: ':brandPagin',
+            component: BrandListComponent
           }
         ]
       },
@@ -69,6 +72,10 @@ export const authorizedRoutes: Route[] = [
         children: [
           {
             path: '',
+            component: InfluencerListComponent
+          },
+          {
+            path: ':influencerPagin',
             component: InfluencerListComponent
           },
           {
