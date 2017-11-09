@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router} from '@angular/router';
-import { Http} from '@angular/http';
+import { Http, Response} from '@angular/http';
 import {NotificationsService} from 'angular2-notifications/dist';
 
 
@@ -13,7 +13,7 @@ export class BrandService {
     private _service: NotificationsService
   ) { }
 
-  getBrands(count=20, offset=0){
+  getBrands(count = 20, offset = 0){
     let url = 'brand/list?count=' + count + '&offset=' + offset;
     return new Promise((res, rej) =>{
       this.http.get(url)
@@ -101,12 +101,52 @@ export class BrandService {
   }
 
 
-  // brandConfirmed(id, confirm) {
-  //   return this.http.put('brand/confirmed/' + id);
-  //   if ( confirm == 0 ){
-  //     return 1
-  //   }else{
-  //     return 0;
-  //   }
-  // }
-}
+  deleteUser( id) {
+    console.log('test ', id);
+    return new Promise((res) => {
+      return this.http.delete('brand/' + id )
+        .toPromise()
+        .then(response => {
+          let data = JSON.parse(response['_body']);
+          if(data.success){
+            res(data.data)
+          } else {
+            let message = data.error;
+            this._service.error(
+              'Error!',
+              message,
+              {
+                timeOut: 5000,
+                showProgressBar: true,
+                pauseOnHover: false,
+                clickToClose: true,
+                maxLength: 100
+              }
+            );
+          }
+        })
+        .catch(error => {
+          let err = JSON.parse(error)
+          this._service.error(
+            'Error!',
+            (err.error) ? err.error : err,
+            {
+              timeOut: 5000,
+              showProgressBar: true,
+              pauseOnHover: false,
+              clickToClose: true,
+              maxLength: 100
+            }
+          );
+        })
+    })
+
+  }
+
+
+
+ }
+
+
+
+

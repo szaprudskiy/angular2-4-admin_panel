@@ -100,4 +100,46 @@ export class InfluencerService {
   }
 
 
+  deleteUser( id) {
+    console.log('test ', id);
+    return new Promise((res) => {
+      return this.http.delete('influencer/' + id )
+        .toPromise()
+        .then(response => {
+          let data = JSON.parse(response['_body']);
+          if(data.success){
+            res(data.data)
+          } else {
+            let message = data.error;
+            this._service.error(
+              'Error!',
+              message,
+              {
+                timeOut: 5000,
+                showProgressBar: true,
+                pauseOnHover: false,
+                clickToClose: true,
+                maxLength: 100
+              }
+            );
+          }
+        })
+        .catch(error => {
+          let err = JSON.parse(error)
+          this._service.error(
+            'Error!',
+            (err.error) ? err.error : err,
+            {
+              timeOut: 5000,
+              showProgressBar: true,
+              pauseOnHover: false,
+              clickToClose: true,
+              maxLength: 100
+            }
+          );
+        })
+    })
+
+  }
+
 }

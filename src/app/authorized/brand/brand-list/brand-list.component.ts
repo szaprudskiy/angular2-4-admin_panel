@@ -2,14 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { BrandService } from '../../../shared/services/brand.service';
 import {ActivatedRoute} from '@angular/router';
 
+
+
 @Component({
   selector: 'app-brand-list',
   templateUrl: './brand-list.component.html',
   styleUrls: ['./brand-list.component.scss']
 })
 export class BrandListComponent implements OnInit {
+
   users;
   activePage;
+  userId;
 
   constructor(
     private service: BrandService,
@@ -17,17 +21,16 @@ export class BrandListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    let self = this;
     this.route.params.subscribe(params => {
-      self.activePage = params['brandPagin'];
-       console.log('active page ', self.activePage)
-      if(self.activePage){
-        this.service.getBrands(20, self.activePage * 20)
+      this.activePage = params['brandPagin'];
+       console.log('active page ', this.activePage)
+      if(this.activePage){
+        this.service.getBrands(20, this.activePage * 20)
           .then(data => {
             this.users = data;
           })
       } else {
-        self.activePage = 1
+        this.activePage = 1
         this.service.getBrands(20, 0)
           .then(data => {
             this.users = data;
@@ -39,13 +42,29 @@ export class BrandListComponent implements OnInit {
       this.users = data;
 
     })
+
+
   }
 
-  prevPage() {
-    return this.activePage - 1
+  
+  getUrl(page) {
+
+    return (page > 1) ? 'brands/' + page : 'brands'
   }
 
-  nextPage() {
-    return this.activePage + 1
+
+  // nextPage(): number {
+  //   return this.activePage + 1
+  // }
+
+
+  deleteUser(user) {
+      this.service.deleteUser(user.id)
+        .then(data => {
+          this.users = this.users.filter(x => x !== user);
+        })
+
   }
+
+
 }

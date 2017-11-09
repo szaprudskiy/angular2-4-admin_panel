@@ -17,17 +17,18 @@ export class InfluencerListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    let self = this;
+
+
     this.route.params.subscribe(params => {
-      self.activePage = params['influencerPagin'];
-      console.log('active page ', self.activePage)
-      if(self.activePage){
-        this.service.getInfluencers(20, self.activePage * 20)
+      let activePage = params['influencerPagin'];
+      console.log('active page ', activePage)
+      if (activePage) {
+        this.service.getInfluencers(20, activePage * 20)
           .then(data => {
             this.users = data;
           })
       } else {
-        self.activePage = 1
+        activePage = 1
         this.service.getInfluencers(20, 0)
           .then(data => {
             this.users = data;
@@ -35,18 +36,18 @@ export class InfluencerListComponent implements OnInit {
       }
     });
 
-    this.service.getInfluencers(10, 0).then(data => {
+    this.service.getInfluencers(20, 0).then(data => {
       this.users = data;
     })
 
   }
 
-  prevPage() {
-    return this.activePage - 1
-  }
+  deleteUser(user) {
+    this.service.deleteUser(user.id)
+      .then(data => {
+        this.users = this.users.filter(x => x !== user);
+      })
 
-  nextPage() {
-    return this.activePage + 1
   }
 
 }

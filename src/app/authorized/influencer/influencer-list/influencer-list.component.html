@@ -31,16 +31,14 @@
             </a>
           </td>
           <td>
-            <a routerLink="">
-              <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
-            </a>
+            <i class="fa fa-trash-o fa-lg" aria-hidden="true" (click)="deleteUser(user)" style="cursor:pointer;"></i>
           </td>
         </tr>
         </tbody>
       </table>
       <ul class="pagination">
         <li class="page-item"><a class="page-link" (click)="prevPage()">Prev</a></li>
-        <li class="page-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a class="page-link" routerLink="/influencers/1">1</a></li>
+        <li class="page-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a class="page-link" routerLink="/influencers">1</a></li>
         <li class="page-item" routerLinkActive="active"><a class="page-link" routerLink="/influencers/2">2</a></li>
         <li class="page-item" routerLinkActive="active"><a class="page-link" routerLink="/influencers/3">3</a></li>
         <li class="page-item" routerLinkActive="active"><a class="page-link" routerLink="/influencers/4">4</a></li>
