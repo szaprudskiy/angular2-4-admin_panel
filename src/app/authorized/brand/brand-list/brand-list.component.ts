@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BrandService } from '../../../shared/services/brand.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 
 
@@ -14,10 +14,13 @@ export class BrandListComponent implements OnInit {
   users;
   activePage;
   userId;
+  countbrand;
+  countintpage;
 
   constructor(
     private service: BrandService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -46,16 +49,21 @@ export class BrandListComponent implements OnInit {
 
   }
 
-  
-  getUrl(page) {
 
+  getUrl(page) {
     return (page > 1) ? 'brands/' + page : 'brands'
   }
 
+  prevPage() {
+     this.activePage = this.activePage - 1;
+     this.router.navigate(['/brands/' + this.activePage])
+  }
 
-  // nextPage(): number {
-  //   return this.activePage + 1
-  // }
+
+  nextPage() {
+     this.activePage = this.activePage + 1;
+     this.router.navigate(['/brands/' + this.activePage])
+  }
 
 
   deleteUser(user) {

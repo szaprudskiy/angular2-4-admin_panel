@@ -38,8 +38,8 @@
       </table>
       <ul class="pagination">
         <li class="page-item" routerLinkActive="active"><a class="page-link" (click)="prevPage()">Prev</a></li>
-        <li class="page-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a class="page-link" [href]="getUrl(1)">1</a></li>
-        <li class="page-item" routerLinkActive="active"><a class="page-link" [href]="getUrl(2)">2</a></li>
+        <li class="page-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a class="page-link" routerLink="/brands/">1</a></li>
+        <li class="page-item" routerLinkActive="active"><a class="page-link" routerLink="/brands/2">2</a></li>
         <li class="page-item" routerLinkActive="active"><a class="page-link" (click)="nextPage()">Next</a></li>
       </ul>
     </div>
